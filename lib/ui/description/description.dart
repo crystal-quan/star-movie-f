@@ -1,5 +1,4 @@
 import 'package:blur/blur.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -42,6 +41,7 @@ class DescriptionPage extends StatefulWidget {
 
 class _DescriptionPageState extends State<DescriptionPage> {
   DescriptionCubit? _cubit;
+  @override
   void initState() {
     _cubit = context.read<DescriptionCubit>();
     super.initState();
@@ -55,7 +55,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
-            color: Color(0xFF0F1B2B),
+            color: const Color(0xFF0F1B2B),
             child: BlocBuilder<DescriptionCubit, DescriptionState>(
               builder: (context, state) {
                 return state.movieDes != null &&
@@ -68,20 +68,19 @@ class _DescriptionPageState extends State<DescriptionPage> {
                           children: [
                             Stack(
                               children: [
-                                Container(
-                                    child: Blur(
+                                Blur(
                                   blur: 0.5,
                                   child: Image.network(
-                                    '${Config.baseImageUrl}${state.movieDes!.backdropPath}',
-                                    fit: BoxFit.cover,
-                                    scale: 1,
+                                '${Config.baseImageUrl}${state.movieDes!.backdropPath}',
+                                fit: BoxFit.cover,
+                                scale: 1,
                                   ),
-                                )),
+                                ),
                                 Column(
                                   children: [
                                     Container(
                                       margin:
-                                          EdgeInsets.fromLTRB(20, 30, 20, 0),
+                                          const EdgeInsets.fromLTRB(20, 30, 20, 0),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -102,10 +101,10 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 30,
                                     ),
-                                    Container(
+                                    SizedBox(
                                       height: 250,
                                       width: 150,
                                       child: Image.network(
@@ -115,19 +114,18 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
-                            Container(
-                                child: Text(
+                            Text(
                               '${state.movieDes?.title}',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
-                            )),
-                            SizedBox(
+                            ),
+                            const SizedBox(
                               height: 15,
                             ),
                             Text(
@@ -137,7 +135,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                 fontSize: 16,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Text('${state.genre}',
@@ -145,7 +143,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                   color: Colors.white.withOpacity(0.5),
                                   fontSize: 16,
                                 )),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             Row(
@@ -153,16 +151,16 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               children: [
                                 Text(
                                     '${(state.movieDes!.voteAverage! / 2).toStringAsFixed(1)}/5',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 24,
                                     )),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 RatingBarIndicator(
                                   rating: state.movieDes!.voteAverage! / 2,
-                                  itemBuilder: (context, index) => Icon(
+                                  itemBuilder: (context, index) => const Icon(
                                     Icons.star,
                                     color: Colors.amber,
                                   ),
@@ -173,12 +171,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               ],
                             ),
                             Container(
-                                margin: EdgeInsets.fromLTRB(20, 30, 20, 20),
-                                padding: EdgeInsets.all(5),
+                                margin: const EdgeInsets.fromLTRB(20, 30, 20, 20),
+                                padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(40),
                                     border:
-                                        Border.all(color: Color(0xFF2C3F5B))),
+                                        Border.all(color: const Color(0xFF2C3F5B))),
                                 height: 45,
                                 child: Row(
                                   children: [
@@ -211,7 +209,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               listbackdrop: state.backdrop,
                               listvideo: state.video,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             )
                           ],
@@ -220,7 +218,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
                     : Container(
                         height: MediaQuery.of(context).size.height,
                         alignment: Alignment.center,
-                        child: CircularProgressIndicator());
+                        child: const CircularProgressIndicator());
               },
             ),
           ),
@@ -236,14 +234,14 @@ class _DescriptionPageState extends State<DescriptionPage> {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(40),
-            color: (selected) ? Color(0xFFD9251D) : Colors.transparent),
+            color: (selected) ? const Color(0xFFD9251D) : Colors.transparent),
         child: Container(
           alignment: Alignment.center,
           child: Text(
             title,
             style: TextStyle(
                 fontSize: 15,
-                color: (selected) ? Colors.white : Color(0xFF2C3F5B),
+                color: (selected) ? Colors.white : const Color(0xFF2C3F5B),
                 fontWeight: FontWeight.bold),
           ),
         ),

@@ -1,11 +1,11 @@
 part of 'showtime_cubit.dart';
 
 @immutable
-class ShowtimeState extends Equatable {
+class ShowtimeState {
   final String? value;
   final int? chooseDate;
   final int? tabIndex;
-  ShowtimeState(
+  const ShowtimeState(
       {this.value, this.chooseDate = 0, this.tabIndex = 0});
   ShowtimeState copyWith({
     String? value,
@@ -19,10 +19,5 @@ class ShowtimeState extends Equatable {
     );
   }
 
-  @override
-  List<Object> get props => [
-        this.value!,
-        this.chooseDate!,
-        this.tabIndex!,
-      ];
+ 
 }

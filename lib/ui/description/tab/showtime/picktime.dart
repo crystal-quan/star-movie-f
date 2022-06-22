@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 
 
@@ -36,6 +37,7 @@ class _PickTimeState extends State<PickTime> {
     _cubit = context.read<ShowtimeCubit>();
     super.initState();
   }
+  @override
   Widget build(BuildContext context) {
     final dates = <Widget>[];
     for (int i = 0; i < 7; i++) {
@@ -54,10 +56,10 @@ class _PickTimeState extends State<PickTime> {
                     width: (state.chooseDate == i) ? 0 : 1),
                 borderRadius: BorderRadius.circular(10),
                 color: (state.chooseDate == i)
-                    ? Color(0xFFF8C42F)
+                    ? const Color(0xFFF8C42F)
                     : Colors.transparent,
               ),
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -80,7 +82,7 @@ class _PickTimeState extends State<PickTime> {
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Text(
@@ -99,52 +101,50 @@ class _PickTimeState extends State<PickTime> {
     }
     return Expanded(
       child: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              buildRow('Choose Date', true, true),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                height: 70,
-                child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: dates.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        child: dates[index],
-                      );
-                    },
-                    separatorBuilder: (context, index) => SizedBox(
-                          width: 10,
-                        )),
-              ),
-              buildRow('Choose Cinema', true, false),
-              BlocBuilder<ShowtimeCubit, ShowtimeState>(
-                builder: (context, state) {
-                  return Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    color: Color(0xFF2B3543),
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                          dropdownColor: Color(0xFF2B3543),
-                          isExpanded: true,
-                          style: TextStyle(color: Colors.white),
-                          value: state.value,
-                          items: cinema.map(buildDropdownItem).toList(),
-                          onChanged: (value) => _cubit?.onChangedCinema(value!)),
-                    ),
-                  );
-                },
-              ),
-              buildRow('2D', false, false),
-              buildtime(),
-              buildRow('Imax', false, false),
-              buildtime(),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            buildRow('Choose Date', true, true),
+            Container(
+              margin: const EdgeInsets.only(left: 20),
+              height: 70,
+              child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: dates.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      child: dates[index],
+                    );
+                  },
+                  separatorBuilder: (context, index) => const SizedBox(
+                        width: 10,
+                      )),
+            ),
+            buildRow('Choose Cinema', true, false),
+            BlocBuilder<ShowtimeCubit, ShowtimeState>(
+              builder: (context, state) {
+                return Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  color: const Color(0xFF2B3543),
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                        dropdownColor: const Color(0xFF2B3543),
+                        isExpanded: true,
+                        style: const TextStyle(color: Colors.white),
+                        value: state.value,
+                        items: cinema.map(buildDropdownItem).toList(),
+                        onChanged: (value) => _cubit?.onChangedCinema(value!)),
+                  ),
+                );
+              },
+            ),
+            buildRow('2D', false, false),
+            buildtime(),
+            buildRow('Imax', false, false),
+            buildtime(),
 
-            ],
-          ),
+          ],
         ),
       ),
     );
@@ -153,12 +153,12 @@ class _PickTimeState extends State<PickTime> {
   Widget buildRow(String title, bool color, bool calendar) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            '$title',
+            title,
             style: TextStyle(
                 color: (color == true)
                     ? Colors.white
@@ -177,7 +177,7 @@ class _PickTimeState extends State<PickTime> {
                     );
                   },
                 )
-              : SizedBox()
+              : const SizedBox()
         ],
       ),
     );
@@ -185,11 +185,11 @@ class _PickTimeState extends State<PickTime> {
 
   Widget buildtime() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       height: 115,
       child: GridView.builder(
-          physics: NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 20,
             mainAxisSpacing: 10,
             crossAxisCount: 3,
@@ -198,15 +198,15 @@ class _PickTimeState extends State<PickTime> {
           itemCount: 6,
           itemBuilder: (context, index) {
             return Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xFF2B3543),
                 border: Border(
                     bottom: BorderSide(color: Color(0xFFF8C42F), width: 1)),
               ),
               alignment: Alignment.center,
               child: Text(
-                '${time[index]}',
-                style: TextStyle(color: Colors.white),
+                time[index],
+                style: const TextStyle(color: Colors.white),
               ),
             );
           }),

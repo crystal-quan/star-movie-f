@@ -5,6 +5,7 @@ import 'package:star_movie_3/ui/utils/textField_custom.dart';
 import 'package:star_movie_3/widgets/app_bar/app_bar.dart';
 
 
+// ignore: must_be_immutable
 class AccountInfomation extends StatelessWidget {
   TextEditingController? controller = TextEditingController();
   AccountInfomation({Key? key, this.controller}) : super(key: key);
@@ -12,20 +13,20 @@ class AccountInfomation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF0F1B2B),
-      bottomNavigationBar: RedButton(
+      backgroundColor: const Color(0xFF0F1B2B),
+      bottomNavigationBar: const RedButton(
         title: 'Save Change',
       ),
       body: SafeArea(
         child: Column(
           children: [
-            AppBarMovie(title: 'Account Information', forward: false),
+            const AppBarMovie(title: 'Account Information', forward: false),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: 24, bottom: 16),
+                      margin: const EdgeInsets.only(top: 24, bottom: 16),
                       width: 118,
                       height: 118,
                       child: ClipRRect(
@@ -37,7 +38,7 @@ class AccountInfomation extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      child: Text(
+                      child: const Text(
                         'Change Photo',
                         style: TextStyle(
                             color: Color(0xff47CFFF),
@@ -65,7 +66,7 @@ class AccountInfomation extends StatelessWidget {
                         title: 'BIRTHDAY',
                         image: 'calendar-line.png',
                         infomation: 'May 29, 1994'),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     GestureDetector(
@@ -73,10 +74,10 @@ class AccountInfomation extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ChangePass(),
+                              builder: (context) => const ChangePass(),
                             ));
                       },
-                      child: Text(
+                      child: const Text(
                         'Change Password',
                         style: TextStyle(
                             color: Color(0xffE51937),

@@ -13,6 +13,7 @@ class ItemVideo extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ItemVideoState createState() => _ItemVideoState();
 }
 
@@ -20,13 +21,13 @@ class _ItemVideoState extends State<ItemVideo> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       width: MediaQuery.of(context).size.width,
       child: ListView.separated(
           scrollDirection: Axis.vertical,
           itemCount: widget.listvideo!.length,
           itemBuilder: (BuildContext context, int index) {
-            return Container(
+            return SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Stack(
                 children: [
@@ -64,7 +65,7 @@ class _ItemVideoState extends State<ItemVideo> {
               ),
             );
           },
-          separatorBuilder: (context, index) => SizedBox(
+          separatorBuilder: (context, index) => const SizedBox(
                 height: 15,
               )),
     );

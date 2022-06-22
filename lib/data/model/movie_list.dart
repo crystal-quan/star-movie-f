@@ -9,16 +9,16 @@ class MovieList {
     if (json['results'] != null) {
       movieslist = <MovieModel>[];
       json['results'].forEach((v) {
-        movieslist!.add(new MovieModel.fromJson(v));
+        movieslist!.add(MovieModel.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
 
-    if (this.movieslist != null) {
-      data['results'] = this.movieslist!.map((v) => v.toJson()).toList();
+    if (movieslist != null) {
+      data['results'] = movieslist!.map((v) => v.toJson()).toList();
     }
 
     return data;
@@ -75,21 +75,21 @@ class MovieModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['poster_path'] = this.posterPath;
-    data['adult'] = this.adult;
-    data['overview'] = this.overview;
-    data['release_date'] = this.releaseDate;
-    data['genre_ids'] = this.genreIds;
-    data['id'] = this.id;
-    data['original_title'] = this.originalTitle;
-    data['original_language'] = this.originalLanguage;
-    data['title'] = this.title;
-    data['backdrop_path'] = this.backdropPath;
-    data['popularity'] = this.popularity;
-    data['vote_count'] = this.voteCount;
-    data['video'] = this.video;
-    data['vote_average'] = this.voteAverage;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['poster_path'] = posterPath;
+    data['adult'] = adult;
+    data['overview'] = overview;
+    data['release_date'] = releaseDate;
+    data['genre_ids'] = genreIds;
+    data['id'] = id;
+    data['original_title'] = originalTitle;
+    data['original_language'] = originalLanguage;
+    data['title'] = title;
+    data['backdrop_path'] = backdropPath;
+    data['popularity'] = popularity;
+    data['vote_count'] = voteCount;
+    data['video'] = video;
+    data['vote_average'] = voteAverage;
     return data;
   }
 }

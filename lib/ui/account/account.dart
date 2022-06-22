@@ -2,10 +2,9 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:star_movie_3/app/app.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AccountPage extends StatefulWidget {
-  AccountPage({Key? key}) : super(key: key);
+  const AccountPage({Key? key}) : super(key: key);
 
   @override
   State<AccountPage> createState() => _AccountPageState();
@@ -20,6 +19,7 @@ class _AccountPageState extends State<AccountPage> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
             //   child: Scaffold(

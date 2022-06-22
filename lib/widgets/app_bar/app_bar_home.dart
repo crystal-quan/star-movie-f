@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:star_movie_3/ui/account/sign_up/view/sign_up_page.dart';
 
 class AppBarHome extends StatelessWidget {
   final String? title;
@@ -20,10 +19,10 @@ class AppBarHome extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.fromLTRB(20, 10, 20, 12),
+              margin: const EdgeInsets.fromLTRB(20, 10, 20, 12),
               child: Text(
                 '$title',
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 24,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
@@ -34,12 +33,12 @@ class AppBarHome extends StatelessWidget {
                     onPressed: () =>onPressed ,        
                     child: Text(
                       '$title2',
-                      style: TextStyle(color: Color(0xffE51937), fontSize: 18),
+                      style: const TextStyle(color: Color(0xffE51937), fontSize: 18),
                     ))
-                : SizedBox()
+                : const SizedBox()
           ],
         ),
-        Divider(
+        const Divider(
           color: Color(0xFF2B3543),
           height: 1,
           thickness: 1,

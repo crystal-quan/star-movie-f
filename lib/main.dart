@@ -12,10 +12,10 @@ Future<void> main() {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
       await Firebase.initializeApp();
-      // final authenticationRepository = AuthenticationRepository();
-      // await authenticationRepository.user.first;
+      final authenticationRepository = AuthenticationRepository();
+      await authenticationRepository.user.first;
       // runApp(App(authenticationRepository: authenticationRepository));
-      runApp(MyApp());
+      runApp(const MyApp());
     },
     blocObserver: AppBlocObserver(),
   );
@@ -29,9 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
+      theme: ThemeData.dark(),
       home: const SplashScreen(),
     );
   }

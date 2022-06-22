@@ -6,9 +6,14 @@ import 'package:formz/formz.dart';
 import 'package:star_movie_3/ui/account/login/cubit/login_cubit.dart';
 import 'package:star_movie_3/ui/account/sign_up/view/sign_up_page.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
 
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
@@ -28,19 +33,27 @@ class LoginForm extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                'assets/bloc_logo_small.png',
-                height: 120,
-              ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 120),
+              const Text('USER NAME'),
               _EmailInput(),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
+              const Text('PASS WORD'),
               _PasswordInput(),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
               _LoginButton(),
-              const SizedBox(height: 8),
-              _GoogleLoginButton(),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _GoogleLoginButton(),
+                  SizedBox(width: 8),
+                  _GoogleLoginButton(),
+                  SizedBox(width: 8),
+                  _GoogleLoginButton(),
+                ],
+              ),
               const SizedBox(height: 4),
               _SignUpButton(),
             ],
@@ -62,7 +75,7 @@ class _EmailInput extends StatelessWidget {
           onChanged: (email) => context.read<LoginCubit>().emailChanged(email),
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            labelText: 'email',
+            icon: Image.asset('images/ic_user.png'),
             helperText: '',
             errorText: state.email.invalid ? 'invalid email' : null,
           ),
@@ -84,7 +97,7 @@ class _PasswordInput extends StatelessWidget {
               context.read<LoginCubit>().passwordChanged(password),
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'password',
+            icon: Image.asset('images/lock.png'),
             helperText: '',
             errorText: state.password.invalid ? 'invalid password' : null,
           ),
@@ -102,18 +115,21 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
-            : ElevatedButton(
+            : InkWell(
                 key: const Key('loginForm_continue_raisedButton'),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  primary: const Color(0xFFFFD600),
-                ),
-                onPressed: state.status.isValidated
+                onTap: state.status.isValidated
                     ? () => context.read<LoginCubit>().logInWithCredentials()
                     : null,
-                child: const Text('LOGIN'),
+                child: Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  color: Colors.red,
+                  child: const Text(
+                    'LOGIN',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
               );
       },
     );
@@ -124,20 +140,19 @@ class _GoogleLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return ElevatedButton.icon(
+    return InkWell(
       key: const Key('loginForm_googleLogin_raisedButton'),
-      label: const Text(
-        'SIGN IN WITH GOOGLE',
-        style: TextStyle(color: Colors.white),
-      ),
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+      // child: const Icon(FontAwesomeIcons.google, color: Colors.white),
+      child: Container(
+        width: 44,
+        height: 44,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(100)),
+          color: Color(0xff1AA9E1),
         ),
-        primary: theme.colorScheme.secondary,
+        child: const Icon(FontAwesomeIcons.google, color: Colors.white),
       ),
-      icon: const Icon(FontAwesomeIcons.google, color: Colors.white),
-      onPressed: () => context.read<LoginCubit>().logInWithGoogle(),
+      onTap: () => context.read<LoginCubit>().logInWithGoogle(),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:star_movie_3/app/app.dart';
-import 'package:star_movie_3/theme.dart';
 
 class App extends StatelessWidget {
   const App({

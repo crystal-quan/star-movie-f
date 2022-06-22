@@ -18,22 +18,21 @@ class _PickDateState extends State<PickDate> {
     _cubit = context.read<ShowtimeCubit>();
     super.initState();
   }
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(vertical: 20),
+          margin: const EdgeInsets.symmetric(vertical: 20),
           width: MediaQuery.of(context).size.width,
           alignment: Alignment.center,
           child: GestureDetector(
             onTap: () {
               _cubit?.calendarTab(0);
             },
-            child: Container(
-              child: Image.asset(
-                'images/close_btn.png',
-                fit: BoxFit.cover,
-              ),
+            child: Image.asset(
+              'images/close_btn.png',
+              fit: BoxFit.cover,
             ),
           ),
         )

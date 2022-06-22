@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:star_movie_3/ui/account/login/cubit/login_cubit.dart';
 import 'package:star_movie_3/ui/account/login/view/login_form.dart';
 
-
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -13,7 +12,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
+      backgroundColor: const Color(0xFF0F1B2B),
+      appBar: AppBar(
+          title: const Text('Login'), backgroundColor: const Color(0xFF0F1B2B)),
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: BlocProvider(

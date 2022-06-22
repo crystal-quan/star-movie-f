@@ -8,15 +8,15 @@ class ReviewList {
     if (json['results'] != null) {
       review = <ReviewModel>[];
       json['results'].forEach((v) {
-        review!.add(new ReviewModel.fromJson(v));
+        review!.add(ReviewModel.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.review != null) {
-      data['results'] = this.review!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (review != null) {
+      data['results'] = review!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -43,7 +43,7 @@ class ReviewModel {
   ReviewModel.fromJson(Map<String, dynamic> json) {
     author = json['author'];
     authorDetails = json['author_details'] != null
-        ? new AuthorDetails.fromJson(json['author_details'])
+        ? AuthorDetails.fromJson(json['author_details'])
         : null;
     content = json['content'];
     createdAt = json['created_at'];
@@ -53,16 +53,16 @@ class ReviewModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['author'] = this.author;
-    if (this.authorDetails != null) {
-      data['author_details'] = this.authorDetails!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['author'] = author;
+    if (authorDetails != null) {
+      data['author_details'] = authorDetails!.toJson();
     }
-    data['content'] = this.content;
-    data['created_at'] = this.createdAt;
-    data['id'] = this.id;
-    data['updated_at'] = this.updatedAt;
-    data['url'] = this.url;
+    data['content'] = content;
+    data['created_at'] = createdAt;
+    data['id'] = id;
+    data['updated_at'] = updatedAt;
+    data['url'] = url;
     return data;
   }
 }
@@ -83,11 +83,11 @@ class AuthorDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['username'] = this.username;
-    data['avatar_path'] = this.avatarPath;
-    data['rating'] = this.rating;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['username'] = username;
+    data['avatar_path'] = avatarPath;
+    data['rating'] = rating;
     return data;
   }
 }

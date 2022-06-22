@@ -10,10 +10,10 @@ class ChangePass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF0F1B2B),
+      backgroundColor: const Color(0xFF0F1B2B),
       body: SafeArea(
         child: Column(
-          children: [
+          children: const [
             AppBarMovie(title: 'Change Password', forward: false),
             BuildTextFieldCustom(
                 title: 'OLD PASSWORD', image: 'lock.png', infomation: ''),

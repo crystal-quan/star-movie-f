@@ -33,23 +33,23 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Synopsis',
             style: TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           BlocBuilder<DescriptionCubit, DescriptionState>(
             builder: (context, state) {
               return Container(
-                margin: EdgeInsets.only(right: 20),
+                margin: const EdgeInsets.only(right: 20),
                 child: ReadMoreText(
                   '${state.movieDes!.overview}',
                   trimLines: 4,
@@ -58,15 +58,15 @@ class _DetailPageState extends State<DetailPage> {
                   trimMode: TrimMode.Line,
                   trimCollapsedText: ' Show more',
                   trimExpandedText: ' Show less',
-                  moreStyle: TextStyle(fontSize: 14, color: Color(0xFF47CFFF)),
-                  lessStyle: TextStyle(fontSize: 14, color: Color(0xFF47CFFF)),
+                  moreStyle: const TextStyle(fontSize: 14, color: Color(0xFF47CFFF)),
+                  lessStyle: const TextStyle(fontSize: 14, color: Color(0xFF47CFFF)),
                   style: TextStyle(
                       fontSize: 14, color: Colors.white.withOpacity(0.5)),
                 ),
               );
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           _buildRow(
@@ -79,16 +79,16 @@ class _DetailPageState extends State<DetailPage> {
               }));
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Container(
+          SizedBox(
             height: 280,
             child: ItemCast(
               listcast: widget.listcast,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           _buildRow(
@@ -101,10 +101,10 @@ class _DetailPageState extends State<DetailPage> {
               }));
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Container(
+          SizedBox(
             height: 80,
             child: ListView.separated(
                 shrinkWrap: true,
@@ -119,11 +119,11 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                   );
                 },
-                separatorBuilder: (context, index) => SizedBox(
+                separatorBuilder: (context, index) => const SizedBox(
                       width: 10,
                     )),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           Column(
@@ -140,10 +140,10 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Container(
+          SizedBox(
             height: 100,
             child: ListView.separated(
                 shrinkWrap: true,
@@ -172,7 +172,7 @@ class _DetailPageState extends State<DetailPage> {
                     ],
                   );
                 },
-                separatorBuilder: (context, index) => SizedBox(
+                separatorBuilder: (context, index) => const SizedBox(
                       width: 10,
                     )),
           ),
@@ -186,13 +186,13 @@ class _DetailPageState extends State<DetailPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '$title',
-          style: TextStyle(
+          title,
+          style: const TextStyle(
               fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
         ),
         GestureDetector(
           onTap: onTap,
-          child: Text(
+          child: const Text(
             'View All',
             style: TextStyle(fontSize: 18, color: Color(0xFF47CFFF)),
           ),

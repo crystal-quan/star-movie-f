@@ -50,10 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> page = [
-    MoviesPage(),
-    TicketPage(),
-    NotificationPage(),
-    AccountPage(),
+    const MoviesPage(),
+    const TicketPage(),
+    const NotificationPage(),
+    const AccountPage(),
   ];
   @override
   void initState() {
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
             return Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   border: Border(top: BorderSide(color: Color(0xFF2B3543), width: 1))),
               child: BottomNavigationBar(
@@ -88,40 +88,40 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: Image.asset(
                       'images/movies.png',
                       color: (state.selectedIndex == 0)
-                          ? Color(0xFF47CFFF)
+                          ? const Color(0xFF47CFFF)
                           : Colors.grey,
                     ),
-                    backgroundColor: Color(0xFF0F1B2B),
+                    backgroundColor: const Color(0xFF0F1B2B),
                   ),
                   BottomNavigationBarItem(
                     label: '',
                     icon: Image.asset(
                       'images/ticket.png',
                       color: (state.selectedIndex == 1)
-                          ? Color(0xFF47CFFF)
+                          ? const Color(0xFF47CFFF)
                           : Colors.grey,
                     ),
-                    backgroundColor: Color(0xFF0F1B2B),
+                    backgroundColor: const Color(0xFF0F1B2B),
                   ),
                   BottomNavigationBarItem(
                     label: '',
                     icon: Image.asset(
                       'images/notification.png',
                       color: (state.selectedIndex == 2)
-                          ? Color(0xFF47CFFF)
+                          ? const Color(0xFF47CFFF)
                           : Colors.grey,
                     ),
-                    backgroundColor: Color(0xFF0F1B2B),
+                    backgroundColor: const Color(0xFF0F1B2B),
                   ),
                   BottomNavigationBarItem(
                     label: '',
                     icon: Image.asset(
                       'images/account.png',
                       color: (state.selectedIndex == 3)
-                          ? Color(0xFF47CFFF)
+                          ? const Color(0xFF47CFFF)
                           : Colors.grey,
                     ),
-                    backgroundColor: Color(0xFF0F1B2B),
+                    backgroundColor: const Color(0xFF0F1B2B),
                   ),
                 ],
               ),

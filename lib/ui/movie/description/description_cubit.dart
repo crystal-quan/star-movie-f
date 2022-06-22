@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:star_movie_3/data/model/cast.dart';
 import 'package:star_movie_3/data/model/movie_description.dart';
@@ -37,11 +36,11 @@ class DescriptionCubit extends Cubit<DescriptionState> {
     String movieGenre = listGenre!.join(', ');
     emit(state.copyWith(
       movieDes: movieDescription,
-      cast: cast!,
-      backdrop: backdrop!,
-      poster: poster!,
-      video: video!,
-      review: review!,
+      cast: cast,
+      backdrop: backdrop,
+      poster: poster,
+      video: video,
+      review: review,
       genre: movieGenre,
     ));
   }

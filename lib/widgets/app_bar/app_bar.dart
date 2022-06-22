@@ -10,11 +10,11 @@ class AppBarMovie extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+          margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -33,7 +33,7 @@ class AppBarMovie extends StatelessWidget {
                     '$title',
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 18,
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
@@ -49,14 +49,14 @@ class AppBarMovie extends StatelessWidget {
                         height: 24,
                       ),
                     )
-                  : SizedBox(width: 24, height: 24)
+                  : const SizedBox(width: 24, height: 24)
             ],
           ),
         ),
-        Divider(
+        const Divider(
           color: Color(0xFF2B3543),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
       ],

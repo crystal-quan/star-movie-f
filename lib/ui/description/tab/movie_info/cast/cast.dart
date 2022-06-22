@@ -23,16 +23,16 @@ class _CastState extends State<Cast> {
         body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          color: Color(0xFF0F1B2B),
+          color: const Color(0xFF0F1B2B),
           child: Column(
             children: [
-              AppBarMovie(
+              const AppBarMovie(
                 title: 'Cast & Crew',
                 forward: false,
               ),
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 18),
+                  margin: const EdgeInsets.symmetric(horizontal: 18),
                   child: ItemCast(listcast: widget.listcast!,)
                 ),
               )

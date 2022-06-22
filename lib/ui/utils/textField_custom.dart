@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 class BuildTextFieldCustom extends StatelessWidget {
@@ -18,7 +20,7 @@ class BuildTextFieldCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       height: 80,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,19 +32,19 @@ class BuildTextFieldCustom extends StatelessWidget {
                 TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 16),
           ),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 2),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            decoration: const BoxDecoration(
                 color: Color(0xff2B3543),
                 borderRadius: BorderRadius.all(Radius.circular(4))),
             child: Container(
-              margin: EdgeInsets.only(left: 12),
+              margin: const EdgeInsets.only(left: 12),
               child: TextField(
                   controller: controller,
                   obscureText: hideText ?? false,
-                  style: TextStyle(decorationColor: Color(0xff2B3543)),
+                  style: const TextStyle(decorationColor: Color(0xff2B3543)),
                   decoration: InputDecoration(
                     hintText: '$infomation',
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                     ),

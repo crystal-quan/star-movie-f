@@ -1,11 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 part 'showtime_state.dart';
 
 class ShowtimeCubit extends Cubit<ShowtimeState> {
-  ShowtimeCubit() : super(ShowtimeState());
+  ShowtimeCubit() : super(const ShowtimeState());
   void onChangedCinema(String value){
     emit(state.copyWith(value: value));
   }

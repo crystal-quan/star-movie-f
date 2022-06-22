@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import 'package:star_movie_3/data/model/movie_list.dart';
 import 'package:star_movie_3/data/repository/nowplaying_repository.dart';
 import 'package:star_movie_3/data/repository/upcoming_repository.dart';
@@ -12,7 +10,7 @@ class HomeCubit extends Cubit<HomeState> {
   PageController controller = PageController();
   NowPlayingMovieRepository nowplayingRepository = NowPlayingMovieRepository();
   UpComingMovieRepository upcomingRepository = UpComingMovieRepository();
-  HomeCubit() : super(HomeState());
+  HomeCubit() : super(const HomeState());
 
   Future<void> getMovies() async {
     final nowplayingMovies = await nowplayingRepository.getNowPlayingMovies();

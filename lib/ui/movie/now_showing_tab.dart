@@ -21,8 +21,8 @@ class _NowShowingTabState extends State<NowShowingTab> {
         return state.nowplayingMovies != null
             ? GridView.builder(
                 // scrollDirection: Axis.horizontal,
-                physics: AlwaysScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                physics: const AlwaysScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                   crossAxisCount: 2,
@@ -43,11 +43,9 @@ class _NowShowingTabState extends State<NowShowingTab> {
                                     state.nowplayingMovies![index].id);
                             }));
                           },
-                          child: Container(
-                            child: Image.network(
-                              '${Config.baseImageUrl}${state.nowplayingMovies![index].posterPath}',
-                              fit: BoxFit.cover,
-                            ),
+                          child: Image.network(
+                            '${Config.baseImageUrl}${state.nowplayingMovies![index].posterPath}',
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -57,7 +55,7 @@ class _NowShowingTabState extends State<NowShowingTab> {
                             alignment: Alignment.centerLeft,
                             child: Text(
                               '${state.nowplayingMovies![index].title}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold),
@@ -68,7 +66,7 @@ class _NowShowingTabState extends State<NowShowingTab> {
                 })
             : Container(
                 alignment: Alignment.center,
-                child: Container(
+                child: const SizedBox(
                   height: 50,
                   width: 50,
                   child: CircularProgressIndicator(),

@@ -13,6 +13,7 @@ class ItemPhoto extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ItemPhotoState createState() => _ItemPhotoState();
 }
 
@@ -20,7 +21,7 @@ class _ItemPhotoState extends State<ItemPhoto> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       width: MediaQuery.of(context).size.width,
       child: ListView.separated(
           scrollDirection: Axis.vertical,
@@ -34,7 +35,7 @@ class _ItemPhotoState extends State<ItemPhoto> {
               ),
             );
           },
-          separatorBuilder: (context, index) => SizedBox(
+          separatorBuilder: (context, index) => const SizedBox(
                 height: 15,
               )),
     );

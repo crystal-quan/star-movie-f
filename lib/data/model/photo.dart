@@ -8,24 +8,24 @@ class PhotoList {
     if (json['backdrops'] != null) {
       backdrops = <Backdrops>[];
       json['backdrops'].forEach((v) {
-        backdrops!.add(new Backdrops.fromJson(v));
+        backdrops!.add(Backdrops.fromJson(v));
       });
     }
     if (json['posters'] != null) {
       posters = <Posters>[];
       json['posters'].forEach((v) {
-        posters!.add(new Posters.fromJson(v));
+        posters!.add(Posters.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.backdrops != null) {
-      data['backdrops'] = this.backdrops!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (backdrops != null) {
+      data['backdrops'] = backdrops!.map((v) => v.toJson()).toList();
     }
-    if (this.posters != null) {
-      data['posters'] = this.posters!.map((v) => v.toJson()).toList();
+    if (posters != null) {
+      data['posters'] = posters!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -57,13 +57,13 @@ class Backdrops {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['aspect_ratio'] = this.aspectRatio;
-    data['file_path'] = this.filePath;
-    data['height'] = this.height;
-    data['vote_average'] = this.voteAverage;
-    data['vote_count'] = this.voteCount;
-    data['width'] = this.width;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['aspect_ratio'] = aspectRatio;
+    data['file_path'] = filePath;
+    data['height'] = height;
+    data['vote_average'] = voteAverage;
+    data['vote_count'] = voteCount;
+    data['width'] = width;
     return data;
   }
 }
@@ -94,13 +94,13 @@ class Posters {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['aspect_ratio'] = this.aspectRatio;
-    data['file_path'] = this.filePath;
-    data['height'] = this.height;
-    data['vote_average'] = this.voteAverage;
-    data['vote_count'] = this.voteCount;
-    data['width'] = this.width;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['aspect_ratio'] = aspectRatio;
+    data['file_path'] = filePath;
+    data['height'] = height;
+    data['vote_average'] = voteAverage;
+    data['vote_count'] = voteCount;
+    data['width'] = width;
     return data;
   }
 }

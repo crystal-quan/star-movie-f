@@ -22,19 +22,17 @@ class _VideoState extends State<Video> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          color: Color(0xFF0F1B2B),
+          color: const Color(0xFF0F1B2B),
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
-              AppBarMovie(
+              const AppBarMovie(
                 title: 'Videos',
                 forward: false,
               ),
               Expanded(
-                  child: Container(
-                    child: ItemVideo(listvideo: widget.listvideo,),
-                  )),
+                  child: ItemVideo(listvideo: widget.listvideo,)),
             ],
           ),
         ),

@@ -39,18 +39,18 @@ class _NotificationPageState extends State<NotificationPage> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: Color(0xFF0F1B2B),
+        color: const Color(0xFF0F1B2B),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppBarHome(title: 'Notifications',signUp: false,),
+            const AppBarHome(title: 'Notifications',signUp: false,),
             ListView.builder(
               shrinkWrap: true,
               itemCount: notifications.length,
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height * 95 / 827,
                       width: MediaQuery.of(context).size.width,
                       child: Column(
@@ -60,22 +60,22 @@ class _NotificationPageState extends State<NotificationPage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(width: 15,),
+                              const SizedBox(width: 15,),
                               Image.asset(
                                 icon[index],
                               ),
-                              SizedBox(width: 15,),
+                              const SizedBox(width: 15,),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(notifications[index],
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                         ),
                                         overflow: TextOverflow.visible),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5,
                                     ),
                                     Text(time[index],
@@ -86,13 +86,13 @@ class _NotificationPageState extends State<NotificationPage> {
                                   ],
                                 ),
                               ),
-                              SizedBox(width: 30,)
+                              const SizedBox(width: 30,)
                             ],
                           ),
                         ],
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       color: Color(0xff2B3543),
                       height: 1,
                       thickness: 1,
