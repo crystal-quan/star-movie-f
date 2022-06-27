@@ -49,7 +49,7 @@ class _LoginFormState extends State<LoginForm> {
               const SizedBox(height: 16),
               BlocConsumer<LoginCubit, LoginState>(
                 listener: (context, state) {
-                  if (state.status == FormzStatus.submissionSuccess) {
+                  if (state.status == FormzStatus.pure) {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -99,10 +99,10 @@ class _LoginFormState extends State<LoginForm> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _GoogleLoginButton(),
-                  const SizedBox(width: 8),
-                  _GoogleLoginButton(),
-                  const SizedBox(width: 8),
+                  // _GoogleLoginButton(),
+                  // const SizedBox(width: 8),
+                  // _GoogleLoginButton(),
+                  // const SizedBox(width: 8),
                   _GoogleLoginButton(),
                 ],
               ),
@@ -173,13 +173,17 @@ class _LoginButton extends StatelessWidget {
                     ? () => context.read<LoginCubit>().logInWithCredentials()
                     : null,
                 child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(4))),
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.06,
-                  color: Colors.red,
                   child: const Text(
                     'LOGIN',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               );

@@ -13,9 +13,6 @@ Future<void> main() {
       await Firebase.initializeApp();
       final authenticationRepository = AuthenticationRepository();
       await authenticationRepository.user.first;
-      
-      
-      // runApp(App(authenticationRepository: authenticationRepository));
       runApp(const MyApp());
     },
     blocObserver: AppBlocObserver(),

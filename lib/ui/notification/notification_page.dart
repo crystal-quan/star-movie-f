@@ -27,7 +27,7 @@ class _NotificationPageState extends State<NotificationPage> {
     'images/ic_like.png',
     'images/ic_noti.png',
     'images/ic_money.png',
-    'images/ic_%.png',
+    'images/ic_phantram.png',
     'images/ic_like.png',
   ];
   @override

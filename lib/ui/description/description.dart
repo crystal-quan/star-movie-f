@@ -8,8 +8,6 @@ import 'package:star_movie_3/ui/description/tab/review.dart';
 import 'package:star_movie_3/ui/description/tab/showtime/showtime.dart';
 import 'package:star_movie_3/ui/movie/description/description_cubit.dart';
 
-
-
 class DescriptionScreen extends StatelessWidget {
   final int? movieid;
 
@@ -71,16 +69,16 @@ class _DescriptionPageState extends State<DescriptionPage> {
                                 Blur(
                                   blur: 0.5,
                                   child: Image.network(
-                                '${Config.baseImageUrl}${state.movieDes!.backdropPath}',
-                                fit: BoxFit.cover,
-                                scale: 1,
+                                    '${Config.baseImageUrl}${state.movieDes!.backdropPath}',
+                                    fit: BoxFit.cover,
+                                    scale: 1,
                                   ),
                                 ),
                                 Column(
                                   children: [
                                     Container(
-                                      margin:
-                                          const EdgeInsets.fromLTRB(20, 30, 20, 0),
+                                      margin: const EdgeInsets.fromLTRB(
+                                          20, 30, 20, 0),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -120,16 +118,16 @@ class _DescriptionPageState extends State<DescriptionPage> {
                             Text(
                               '${state.movieDes?.title}',
                               style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold),
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(
                               height: 15,
                             ),
                             Text(
-                              '${state.movieDes!.runtime!~/ 60}h ${state.movieDes!.runtime! % 60}m',
+                              '${state.movieDes!.runtime! ~/ 60}h ${state.movieDes!.runtime! % 60}m',
                               style: TextStyle(
                                 color: Colors.white.withOpacity(0.5),
                                 fontSize: 16,
@@ -171,12 +169,13 @@ class _DescriptionPageState extends State<DescriptionPage> {
                               ],
                             ),
                             Container(
-                                margin: const EdgeInsets.fromLTRB(20, 30, 20, 20),
+                                margin:
+                                    const EdgeInsets.fromLTRB(20, 30, 20, 20),
                                 padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(40),
-                                    border:
-                                        Border.all(color: const Color(0xFF2C3F5B))),
+                                    border: Border.all(
+                                        color: const Color(0xFF2C3F5B))),
                                 height: 45,
                                 child: Row(
                                   children: [
