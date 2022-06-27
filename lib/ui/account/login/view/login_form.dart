@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 import 'package:star_movie_3/ui/account/login/cubit/login_cubit.dart';
-import 'package:star_movie_3/ui/account/sign_up/view/sign_up_page.dart';
+import 'package:star_movie_3/ui/account/tab/account_information.dart';
+import 'package:star_movie_3/ui/home/home_page.dart';
+import 'package:star_movie_3/widgets/app_bar/app_bar.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -35,27 +38,74 @@ class _LoginFormState extends State<LoginForm> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 120),
+              SizedBox(height: MediaQuery.of(context).size.height / 10),
               const Text('USER NAME'),
-              _EmailInput(),
+              EmailInput(),
               const SizedBox(height: 16),
               const Text('PASS WORD'),
               _PasswordInput(),
               const SizedBox(height: 16),
               _LoginButton(),
               const SizedBox(height: 16),
+              BlocConsumer<LoginCubit, LoginState>(
+                listener: (context, state) {
+                  if (state.status == FormzStatus.submissionSuccess) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Scaffold(
+                            backgroundColor: const Color(0xFF0F1B2B),
+                            body: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                AppBarMovie(
+                                  forward: false,
+                                  title: 'Send a password reset email',
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      'Check your mail:\n ${state.email.value}',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 26),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ));
+                  }
+                  ;
+                },
+                builder: (context, state) {
+                  return Center(
+                    child: InkWell(
+                      onTap: () => context.read<LoginCubit>().forgotPass(),
+                      child: Text(
+                        'Forgot Passwrod',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(0.5), fontSize: 14),
+                      ),
+                    ),
+                  );
+                },
+              ),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height > 800
+                      ? MediaQuery.of(context).size.height / 5
+                      : null),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _GoogleLoginButton(),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   _GoogleLoginButton(),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   _GoogleLoginButton(),
                 ],
               ),
-              const SizedBox(height: 4),
-              _SignUpButton(),
             ],
           ),
         ),
@@ -64,7 +114,9 @@ class _LoginFormState extends State<LoginForm> {
   }
 }
 
-class _EmailInput extends StatelessWidget {
+class EmailInput extends StatelessWidget {
+  const EmailInput({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LoginCubit, LoginState>(
@@ -139,35 +191,18 @@ class _LoginButton extends StatelessWidget {
 class _GoogleLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return InkWell(
       key: const Key('loginForm_googleLogin_raisedButton'),
-      // child: const Icon(FontAwesomeIcons.google, color: Colors.white),
       child: Container(
         width: 44,
         height: 44,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(100)),
-          color: Color(0xff1AA9E1),
+          color: Color(0xffCB3E2D),
         ),
         child: const Icon(FontAwesomeIcons.google, color: Colors.white),
       ),
       onTap: () => context.read<LoginCubit>().logInWithGoogle(),
-    );
-  }
-}
-
-class _SignUpButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return TextButton(
-      key: const Key('loginForm_createAccount_flatButton'),
-      onPressed: () => Navigator.of(context).push<void>(SignUpPage.route()),
-      child: Text(
-        'CREATE ACCOUNT',
-        style: TextStyle(color: theme.primaryColor),
-      ),
     );
   }
 }

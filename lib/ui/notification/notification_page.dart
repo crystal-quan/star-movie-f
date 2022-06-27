@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:star_movie_3/widgets/app_bar/app_bar_home.dart';
 
-
-
 class NotificationPage extends StatefulWidget {
   const NotificationPage({Key? key}) : super(key: key);
 
@@ -43,7 +41,10 @@ class _NotificationPageState extends State<NotificationPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const AppBarHome(title: 'Notifications',signUp: false,),
+            const AppBarHome(
+              title: 'Notifications',
+              signUp: false,
+            ),
             ListView.builder(
               shrinkWrap: true,
               itemCount: notifications.length,
@@ -51,7 +52,9 @@ class _NotificationPageState extends State<NotificationPage> {
                 return Column(
                   children: [
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 95 / 827,
+                      height: (MediaQuery.of(context).size.height > 800)
+                          ? MediaQuery.of(context).size.height * 100 / 827
+                          : null,
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -60,11 +63,15 @@ class _NotificationPageState extends State<NotificationPage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const SizedBox(width: 15,),
+                              const SizedBox(
+                                width: 15,
+                              ),
                               Image.asset(
                                 icon[index],
                               ),
-                              const SizedBox(width: 15,),
+                              const SizedBox(
+                                width: 15,
+                              ),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +93,9 @@ class _NotificationPageState extends State<NotificationPage> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(width: 30,)
+                              const SizedBox(
+                                width: 30,
+                              )
                             ],
                           ),
                         ],

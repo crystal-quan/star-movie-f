@@ -5,7 +5,6 @@ import 'package:star_movie_3/ui/description/description.dart';
 
 import '../home/home_cubit.dart';
 
-
 class ComingSoonTab extends StatefulWidget {
   const ComingSoonTab({Key? key}) : super(key: key);
 
@@ -13,8 +12,10 @@ class ComingSoonTab extends StatefulWidget {
   State<ComingSoonTab> createState() => _ComingSoonTabState();
 }
 
-class _ComingSoonTabState extends State<ComingSoonTab> {
+class _ComingSoonTabState extends State<ComingSoonTab>
+    with AutomaticKeepAliveClientMixin {
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
@@ -75,4 +76,9 @@ class _ComingSoonTabState extends State<ComingSoonTab> {
       },
     );
   }
+
+  @override
+  // ignore: todo
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

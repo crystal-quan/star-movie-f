@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 part 'sign_up_state.dart';
 
@@ -21,6 +22,15 @@ class SignUpCubit extends Cubit<SignUpState> {
           state.password,
           state.confirmedPassword,
         ]),
+      ),
+    );
+  }
+
+  void phoneChanged(String phone) {
+    String phone = '';
+    emit(
+      state.copyWith(
+        phone: phone,
       ),
     );
   }
@@ -62,6 +72,14 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   Future<void> signUpFormSubmitted() async {
+    dynamic db = FirebaseFirestore.instance;
+    final user = <String, String>{
+      "name": "Los Angeles",
+      "email": "tesst",
+      "phone": "CA",
+      "birthday": "USA",
+    };
+    await db.collection("user").doc('0JKRiI21OwSmzmHYZh4a').set(user);
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
@@ -69,6 +87,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         email: state.email.value,
         password: state.password.value,
       );
+
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on SignUpWithEmailAndPasswordFailure catch (e) {
       emit(

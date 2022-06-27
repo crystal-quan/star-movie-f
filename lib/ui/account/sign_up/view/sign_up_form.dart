@@ -22,18 +22,33 @@ class SignUpForm extends StatelessWidget {
         }
       },
       child: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _EmailInput(),
-            const SizedBox(height: 8),
-            _PasswordInput(),
-            const SizedBox(height: 8),
-            _ConfirmPasswordInput(),
-            const SizedBox(height: 8),
-            _SignUpButton(),
-          ],
+        alignment: Alignment.topCenter,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('USER NAME'),
+              _NameInput(),
+              const SizedBox(height: 18),
+              const Text('EMAIL'),
+              _EmailInput(),
+              const SizedBox(height: 18),
+              const Text('PHONE'),
+              _PhoneInput(),
+              const SizedBox(height: 18),
+              const Text('BIRTHDAY'),
+              _BirthdayInput(),
+              const SizedBox(height: 18),
+              const Text('PASSWORD'),
+              _PasswordInput(),
+              const SizedBox(height: 18),
+              const Text('RE-TYPE PASSWORD'),
+              _ConfirmPasswordInput(),
+              const SizedBox(height: 18),
+              _SignUpButton(),
+            ],
+          ),
         ),
       ),
     );
@@ -51,9 +66,68 @@ class _EmailInput extends StatelessWidget {
           onChanged: (email) => context.read<SignUpCubit>().emailChanged(email),
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            labelText: 'email',
+            icon: Image.asset('images/mail.png'),
             helperText: '',
             errorText: state.email.invalid ? 'invalid email' : null,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _PhoneInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpCubit, SignUpState>(
+      buildWhen: (previous, current) => previous.phone != current.phone,
+      builder: (context, state) {
+        return TextField(
+          key: const Key('signUpForm_phonelInput_textField'),
+          onChanged: (phone) => context.read<SignUpCubit>().phoneChanged(phone),
+          keyboardType: TextInputType.phone,
+          decoration: InputDecoration(
+            icon: Image.asset('images/ic_phone.png'),
+            helperText: '',
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _BirthdayInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpCubit, SignUpState>(
+      buildWhen: (previous, current) => previous.birthday != current.birthday,
+      builder: (context, state) {
+        return TextField(
+          key: const Key('signUpForm_birthdayInput_textField'),
+          onChanged: (birthday) => context.read<SignUpCubit>().phoneChanged(birthday),
+          keyboardType: TextInputType.datetime,
+          decoration: InputDecoration(
+            icon: Image.asset('images/ic_phone.png'),
+            helperText: '',
+          ),
+        );
+      },
+    );
+  }
+}
+class _NameInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignUpCubit, SignUpState>(
+      buildWhen: (previous, current) => previous.name != current.name,
+      builder: (context, state) {
+        return TextField(
+          key: const Key('signUpForm_nameInput_textField'),
+          onChanged: (name) => context.read<SignUpCubit>().phoneChanged(name),
+          keyboardType: TextInputType.name,
+          decoration: InputDecoration(
+            icon: Image.asset('images/ic_user.png'),
+            helperText: '',
           ),
         );
       },
@@ -73,7 +147,7 @@ class _PasswordInput extends StatelessWidget {
               context.read<SignUpCubit>().passwordChanged(password),
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'password',
+            icon: Image.asset('images/lock.png'),
             helperText: '',
             errorText: state.password.invalid ? 'invalid password' : null,
           ),
@@ -98,7 +172,7 @@ class _ConfirmPasswordInput extends StatelessWidget {
               .confirmedPasswordChanged(confirmPassword),
           obscureText: true,
           decoration: InputDecoration(
-            labelText: 'confirm password',
+            icon: Image.asset('images/lock.png'),
             helperText: '',
             errorText: state.confirmedPassword.invalid
                 ? 'passwords do not match'
@@ -118,18 +192,19 @@ class _SignUpButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
-            : ElevatedButton(
+            : InkWell(
                 key: const Key('signUpForm_continue_raisedButton'),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  primary: Colors.orangeAccent,
-                ),
-                onPressed: state.status.isValidated
+                onTap: state.status.isValidated
                     ? () => context.read<SignUpCubit>().signUpFormSubmitted()
                     : null,
-                child: const Text('SIGN UP'),
+                child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(4))),
+                    child: const Text('Create Account')),
               );
       },
     );

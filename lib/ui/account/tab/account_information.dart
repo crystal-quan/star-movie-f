@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:star_movie_3/app/bloc/app_bloc.dart';
 import 'package:star_movie_3/ui/account/tab/change_pass.dart';
+import 'package:star_movie_3/ui/home/widgets/avatar.dart';
 import 'package:star_movie_3/ui/utils/red_button.dart';
 import 'package:star_movie_3/ui/utils/textField_custom.dart';
 import 'package:star_movie_3/widgets/app_bar/app_bar.dart';
 
-
 // ignore: must_be_immutable
-class AccountInfomation extends StatelessWidget {
+class AccountInfomation extends StatefulWidget {
   TextEditingController? controller = TextEditingController();
   AccountInfomation({Key? key, this.controller}) : super(key: key);
 
   @override
+  State<AccountInfomation> createState() => _AccountInfomationState();
+}
+
+class _AccountInfomationState extends State<AccountInfomation> {
+  @override
   Widget build(BuildContext context) {
+    final user = context.select((AppBloc bloc) => bloc.state.user);
+
     return Scaffold(
       backgroundColor: const Color(0xFF0F1B2B),
       bottomNavigationBar: const RedButton(
@@ -27,14 +36,11 @@ class AccountInfomation extends StatelessWidget {
                   children: [
                     Container(
                       margin: const EdgeInsets.only(top: 24, bottom: 16),
-                      width: 118,
-                      height: 118,
+                      width: 140,
+                      height: 140,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: Image.asset(
-                          'images/ic_avatar.png',
-                          fit: BoxFit.cover,
-                        ),
+                        child: Avatar(photo: user.photo),
                       ),
                     ),
                     GestureDetector(
@@ -47,22 +53,22 @@ class AccountInfomation extends StatelessWidget {
                       ),
                     ),
                     BuildTextFieldCustom(
-                        controller: controller,
+                        controller: widget.controller,
                         title: 'USER NAME',
                         image: 'ic_user.png',
-                        infomation: 'Crystal Quan'),
+                        infomation: user.name ?? user.id),
                     BuildTextFieldCustom(
-                        controller: controller,
+                        controller: widget.controller,
                         title: 'EMAIL',
                         image: 'mail.png',
-                        infomation: 'Crystalliu25081987@gmail.com'),
+                        infomation: '${user.email}'),
                     BuildTextFieldCustom(
-                        controller: controller,
+                        controller: widget.controller,
                         title: 'PHONE',
                         image: 'ic_phone.png',
                         infomation: '(+84) 363 226 994'),
                     BuildTextFieldCustom(
-                        controller: controller,
+                        controller: widget.controller,
                         title: 'BIRTHDAY',
                         image: 'calendar-line.png',
                         infomation: 'May 29, 1994'),

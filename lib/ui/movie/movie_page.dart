@@ -9,10 +9,13 @@ class MoviesPage extends StatefulWidget {
   const MoviesPage({Key? key}) : super(key: key);
 
   @override
-  State<MoviesPage> createState() => _MoviesPageState();
+  MoviesPageState createState() {
+    return MoviesPageState();
+  }
 }
 
-class _MoviesPageState extends State<MoviesPage> {
+class MoviesPageState extends State<MoviesPage>
+    with AutomaticKeepAliveClientMixin {
   late HomeCubit _cubit;
 
   @override
@@ -24,6 +27,7 @@ class _MoviesPageState extends State<MoviesPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -101,7 +105,9 @@ class _MoviesPageState extends State<MoviesPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            (selected) ? Image.asset('images/play_button.png') : const SizedBox(),
+            (selected)
+                ? Image.asset('images/play_button.png')
+                : const SizedBox(),
             SizedBox(
               width: (selected) ? 10 : 0,
             ),
@@ -120,4 +126,9 @@ class _MoviesPageState extends State<MoviesPage> {
       ),
     ));
   }
+
+  @override
+  // ignore: todo
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

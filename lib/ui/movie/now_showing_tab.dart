@@ -5,7 +5,6 @@ import 'package:star_movie_3/ui/description/description.dart';
 
 import '../home/home_cubit.dart';
 
-
 class NowShowingTab extends StatefulWidget {
   const NowShowingTab({Key? key}) : super(key: key);
 
@@ -13,8 +12,10 @@ class NowShowingTab extends StatefulWidget {
   State<NowShowingTab> createState() => _NowShowingTabState();
 }
 
-class _NowShowingTabState extends State<NowShowingTab> {
+class _NowShowingTabState extends State<NowShowingTab>
+    with AutomaticKeepAliveClientMixin {
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
@@ -39,8 +40,7 @@ class _NowShowingTabState extends State<NowShowingTab> {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return DescriptionScreen(
-                                movieid:
-                                    state.nowplayingMovies![index].id);
+                                  movieid: state.nowplayingMovies![index].id);
                             }));
                           },
                           child: Image.network(
@@ -75,4 +75,9 @@ class _NowShowingTabState extends State<NowShowingTab> {
       },
     );
   }
+
+  @override
+  // ignore: todo
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

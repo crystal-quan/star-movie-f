@@ -32,113 +32,119 @@ class _LoginedpageState extends State<Loginedpage> {
           )
         ],
       ),
-      body: Column(
-        children: [
-          // AppBarHome(
-          //   title: 'Profile',
-          //   signUp: true,
-          //   title2: 'Log Out',
-          //   onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
-          // ),
-          Container(
-            margin: const EdgeInsets.only(top: 24, bottom: 16),
-            width: 140,
-            height: 140,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Avatar(photo: user.photo),
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                user.name ?? '',
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                    fontSize: 26,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // AppBarHome(
+            //   title: 'Profile',
+            //   signUp: true,
+            //   title2: 'Log Out',
+            //   onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
+            // ),
+            Container(
+              margin: const EdgeInsets.only(top: 24, bottom: 16),
+              width: 140,
+              height: 140,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Avatar(photo: user.photo),
               ),
-              Container(
-                margin: const EdgeInsets.only(left: 10),
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(2)),
-                  color: const Color(0xff19E58F).withOpacity(0.2),
-                ),
-                child: const Text(
-                  'MEMBER',
-                  style: TextStyle(
-                    color: Color(0xff19E58F),
-                    fontSize: 14,
-                  ),
-                ),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 4,
-          ),
-          Text(
-            user.email ?? '',
-            style: textStyle2(16),
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 28, right: 22, top: 40, bottom: 55),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.08,
-            child: Row(
+            ),
+            Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Text(
-                      '123',
-                      style: TextStyle(
-                          fontSize: 32,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'TOTAL POINTS',
-                      style: textStyle2(14),
-                    )
-                  ],
+                Text(
+                  user.name ?? '',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 26,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  width: 1,
-                  color: Colors.white.withOpacity(0.5),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Text(
-                      '06',
-                      style: TextStyle(
-                          fontSize: 32,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                  margin: const EdgeInsets.only(left: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(2)),
+                    color: const Color(0xff19E58F).withOpacity(0.2),
+                  ),
+                  child: const Text(
+                    'MEMBER',
+                    style: TextStyle(
+                      color: Color(0xff19E58F),
+                      fontSize: 14,
                     ),
-                    Text(
-                      'MOVIES WATCHED',
-                      style: textStyle2(14),
-                    )
-                  ],
-                ),
+                  ),
+                )
               ],
             ),
-          ),
-          buildGestureDetector(
-              'Account Information', 'ic_account.png', AccountInfomation()),
-          buildGestureDetector(
-              'Transactions History', 'ic_dollar.png', const Transaction()),
-          buildGestureDetector('Rating App', 'ic_rating.png', const Scaffold()),
-          buildGestureDetector('Privacy Policy', 'ic_folder.png', const Scaffold()),
-        ],
+            const SizedBox(
+              height: 4,
+            ),
+            Text(
+              user.email ?? '',
+              style: textStyle2(16),
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                  left: 28, right: 22, top: 40, bottom: 55),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.1,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const Text(
+                        '123',
+                        style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'TOTAL POINTS',
+                        style: textStyle2(14),
+                      )
+                    ],
+                  ),
+                  Container(
+                    width: 1,
+                    color: Colors.white.withOpacity(0.5),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const Text(
+                        '06',
+                        style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'MOVIES WATCHED',
+                        style: textStyle2(14),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            buildGestureDetector(
+                'Account Information', 'ic_account.png', AccountInfomation()),
+            buildGestureDetector(
+                'Transactions History', 'ic_dollar.png', const Transaction()),
+            buildGestureDetector(
+                'Rating App', 'ic_rating.png', const Scaffold()),
+            buildGestureDetector(
+                'Privacy Policy', 'ic_folder.png', const Scaffold()),
+          ],
+        ),
       ),
     );
   }

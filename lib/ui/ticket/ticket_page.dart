@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:star_movie_3/widgets/app_bar/app_bar_home.dart';
 
-
 class TicketPage extends StatefulWidget {
   const TicketPage({Key? key}) : super(key: key);
 
@@ -17,6 +16,7 @@ class _TicketPageState extends State<TicketPage> {
         child: Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         color: const Color(0xFF0F1B2B),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +29,8 @@ class _TicketPageState extends State<TicketPage> {
                 child: Swiper(
               itemBuilder: (BuildContext context, int index) {
                 return Container(
-                    margin: const EdgeInsets.only(left: 10, right: 12, bottom: 50),
+                    margin:
+                        const EdgeInsets.only(left: 10, right: 12, bottom: 50),
                     decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(8),
@@ -39,24 +40,25 @@ class _TicketPageState extends State<TicketPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Flexible(
-                          fit: FlexFit.tight,
-                          flex: 2,
-                          child: Image.asset(
-                            'images/img_tickets.png',
-                            fit: BoxFit.fill,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.22,
+                          child: ClipRRect(
+                            child: Image.asset(
+                              'images/img_tickets.png',
+                              fit: BoxFit.fitWidth,
+                            ),
                           ),
                         ),
                         Flexible(
                             flex: 2,
-                            fit: FlexFit.tight,
+                            fit: FlexFit.loose,
                             child: Container(
                               color: const Color(0xff2B3543),
                               child: Container(
                                 margin: const EdgeInsets.only(left: 24),
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Flexible(
                                         flex: 4,
@@ -71,12 +73,12 @@ class _TicketPageState extends State<TicketPage> {
                                               'John Wick 3: Parabellum',
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 20),
+                                                  fontSize: 18),
                                             ),
                                             Text(
                                               'THEATRE',
                                               style: TextStyle(
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Colors.white
                                                     .withOpacity(0.5),
                                               ),
@@ -85,26 +87,25 @@ class _TicketPageState extends State<TicketPage> {
                                               'Paragon Cinema',
                                               style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 20),
+                                                  fontSize: 18),
                                             )
                                           ],
                                         )),
                                     Flexible(
                                         flex: 5,
-                                        fit: FlexFit.tight,
+                                        fit: FlexFit.loose,
                                         child: Row(
                                           children: [
                                             Flexible(
                                                 child: Column(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceAround,
+                                                  MainAxisAlignment.spaceAround,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text('DATE',
                                                     style: TextStyle(
-                                                      fontSize: 14,
+                                                      fontSize: 12,
                                                       color: Colors.white
                                                           .withOpacity(0.5),
                                                     )),
@@ -112,7 +113,7 @@ class _TicketPageState extends State<TicketPage> {
                                                   '24 May, 2019',
                                                   style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 20),
+                                                      fontSize: 18),
                                                 ),
                                                 Row(
                                                   children: [
@@ -126,7 +127,7 @@ class _TicketPageState extends State<TicketPage> {
                                                       children: [
                                                         Text('HALL',
                                                             style: TextStyle(
-                                                              fontSize: 14,
+                                                              fontSize: 12,
                                                               color: Colors
                                                                   .white
                                                                   .withOpacity(
@@ -135,14 +136,14 @@ class _TicketPageState extends State<TicketPage> {
                                                         const Text(
                                                           'C',
                                                           style: TextStyle(
-                                                              color: Colors
-                                                                  .white,
-                                                              fontSize: 20),
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 18),
                                                         )
                                                       ],
                                                     ),
                                                     const SizedBox(
-                                                      width: 20,
+                                                      width: 18,
                                                     ),
                                                     Column(
                                                       mainAxisAlignment:
@@ -154,7 +155,7 @@ class _TicketPageState extends State<TicketPage> {
                                                       children: [
                                                         Text('ROW',
                                                             style: TextStyle(
-                                                              fontSize: 14,
+                                                              fontSize: 12,
                                                               color: Colors
                                                                   .white
                                                                   .withOpacity(
@@ -163,9 +164,9 @@ class _TicketPageState extends State<TicketPage> {
                                                         const Text(
                                                           'E',
                                                           style: TextStyle(
-                                                              color: Colors
-                                                                  .white,
-                                                              fontSize: 20),
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 18),
                                                         )
                                                       ],
                                                     ),
@@ -184,7 +185,7 @@ class _TicketPageState extends State<TicketPage> {
                                                     children: [
                                                   Text('TIME',
                                                       style: TextStyle(
-                                                        fontSize: 14,
+                                                        fontSize: 12,
                                                         color: Colors.white
                                                             .withOpacity(0.5),
                                                       )),
@@ -192,11 +193,11 @@ class _TicketPageState extends State<TicketPage> {
                                                     '8:30 - 10:00 AM',
                                                     style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 20),
+                                                        fontSize: 18),
                                                   ),
                                                   Text('SEAT',
                                                       style: TextStyle(
-                                                        fontSize: 14,
+                                                        fontSize: 12,
                                                         color: Colors.white
                                                             .withOpacity(0.5),
                                                       )),
@@ -204,7 +205,7 @@ class _TicketPageState extends State<TicketPage> {
                                                     'E4, E5',
                                                     style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 20),
+                                                        fontSize: 18),
                                                   ),
                                                 ]))
                                           ],
@@ -215,7 +216,7 @@ class _TicketPageState extends State<TicketPage> {
                             )),
                         Flexible(
                           flex: 1,
-                          fit: FlexFit.tight,
+                          fit: FlexFit.loose,
                           child: Container(
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
@@ -233,14 +234,12 @@ class _TicketPageState extends State<TicketPage> {
                                 Container(
                                   margin: const EdgeInsets.only(top: 8),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: const [
                                       Text(
                                         'P A R',
                                         style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 14),
+                                            color: Colors.black, fontSize: 14),
                                       ),
                                       SizedBox(
                                         width: 57,
@@ -263,7 +262,7 @@ class _TicketPageState extends State<TicketPage> {
               // containerHeight: 532,
               itemWidth: MediaQuery.of(context).size.width,
               itemHeight: MediaQuery.of(context).size.height,
-              itemCount: 10,
+              itemCount: 4,
               layout: SwiperLayout.TINDER,
               onTap: (index) {},
             ))

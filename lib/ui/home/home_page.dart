@@ -7,7 +7,6 @@ import 'package:star_movie_3/ui/ticket/ticket_page.dart';
 
 import 'home_cubit.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -16,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -75,7 +73,8 @@ class _HomeScreenState extends State<HomeScreen> {
             return Container(
               decoration: const BoxDecoration(
                   color: Colors.white,
-                  border: Border(top: BorderSide(color: Color(0xFF2B3543), width: 1))),
+                  border: Border(
+                      top: BorderSide(color: Color(0xFF2B3543), width: 1))),
               child: BottomNavigationBar(
                 currentIndex: state.selectedIndex!,
                 onTap: _onItemTapped,

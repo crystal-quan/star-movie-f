@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:star_movie_3/widgets/app_bar/app_bar.dart';
 
-
 class Transaction extends StatelessWidget {
   const Transaction({Key? key}) : super(key: key);
 
@@ -10,20 +9,23 @@ class Transaction extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF0F1B2B),
       body: SafeArea(
-        child: Column(
-          children: [
-            const AppBarMovie(title: 'Transactions History', forward: false),
-            Container(
-                margin: const EdgeInsets.only(left: 18, right: 18, bottom: 18),
-                child: Image.asset(
-                  'images/atm.png',
-                  fit: BoxFit.cover,
-                )),
-            buildContainer(true, 'John Wick 3: Parabellum', '54'),
-            buildContainer(true, 'King of the Monsters', '38'),
-            buildContainer(false, 'Bank Account', '60'),
-            buildContainer(true, 'The Secret Life of Pets ', '54'),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const AppBarMovie(title: 'Transactions History', forward: false),
+              Container(
+                  margin:
+                      const EdgeInsets.only(left: 18, right: 18, bottom: 18),
+                  child: Image.asset(
+                    'images/atm.png',
+                    fit: BoxFit.cover,
+                  )),
+              buildContainer(true, 'John Wick 3: Parabellum', '54'),
+              buildContainer(true, 'King of the Monsters', '38'),
+              buildContainer(false, 'Bank Account', '60'),
+              buildContainer(true, 'The Secret Life of Pets ', '54'),
+            ],
+          ),
         ),
       ),
     );
@@ -64,8 +66,9 @@ class Transaction extends StatelessWidget {
                   TextSpan(
                       text: '\n$title',
                       style: const TextStyle(
+                          overflow: TextOverflow.ellipsis,
                           color: Color.fromRGBO(255, 255, 255, 0.5),
-                          fontSize: 12)),
+                          fontSize: 11)),
                 ],
               ),
             ),
@@ -76,14 +79,16 @@ class Transaction extends StatelessWidget {
                 text: spenMoney ? '- \$$money.00' : '+ \$$money.00',
                 style: TextStyle(
                   fontSize: 14,
-                  color: spenMoney ? const Color(0xffE51937) : const Color(0xff19E58F),
+                  color: spenMoney
+                      ? const Color(0xffE51937)
+                      : const Color(0xff19E58F),
                 ),
                 children: const <TextSpan>[
                   TextSpan(
                       text: '\n24 MAY, 2019',
                       style: TextStyle(
                           color: Color.fromRGBO(255, 255, 255, 0.5),
-                          fontSize: 12)),
+                          fontSize: 11)),
                 ],
               ),
             )

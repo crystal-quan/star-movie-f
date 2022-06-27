@@ -1,6 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 
@@ -19,6 +20,26 @@ class LoginCubit extends Cubit<LoginState> {
         status: Formz.validate([email, state.password]),
       ),
     );
+  }
+
+  Future<void> forgotPass() async {
+    //if (!state.status.isValidated) return;
+    //emit(state.copyWith(status: FormzStatus.submissionInProgress));
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(
+        email: state.email.value,
+      );
+      emit(state.copyWith(status: FormzStatus.submissionSuccess));
+    } on LogInWithEmailAndPasswordFailure catch (e) {
+      emit(
+        state.copyWith(
+          errorMessage: e.message,
+          status: FormzStatus.submissionFailure,
+        ),
+      );
+    } catch (_) {
+      emit(state.copyWith(status: FormzStatus.submissionFailure));
+    }
   }
 
   void passwordChanged(String value) {

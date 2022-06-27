@@ -2,7 +2,6 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:star_movie_3/app/app.dart';
 
 import 'package:star_movie_3/ui/Splash_Screen/Splash_Screen.dart';
@@ -14,6 +13,8 @@ Future<void> main() {
       await Firebase.initializeApp();
       final authenticationRepository = AuthenticationRepository();
       await authenticationRepository.user.first;
+      
+      
       // runApp(App(authenticationRepository: authenticationRepository));
       runApp(const MyApp());
     },
