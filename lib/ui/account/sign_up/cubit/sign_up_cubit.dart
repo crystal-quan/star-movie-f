@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -26,11 +29,29 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
   }
 
-  void phoneChanged(String phone) {
-    String phone = '';
+  void phoneChanged(String value) {
+    String phone = value;
     emit(
       state.copyWith(
         phone: phone,
+      ),
+    );
+  }
+
+  void nameChanged(String value) {
+    String name = value;
+    emit(
+      state.copyWith(
+        name: name,
+      ),
+    );
+  }
+
+  void birthdayChanged(String value) {
+    String birthday = value;
+    emit(
+      state.copyWith(
+        birthday: birthday,
       ),
     );
   }
@@ -72,23 +93,31 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   Future<void> signUpFormSubmitted() async {
-    dynamic db = FirebaseFirestore.instance;
-    final user = <String, String>{
-      "name": "Los Angeles",
-      "email": "tesst",
-      "phone": "CA",
-      "birthday": "USA",
-    };
-    await db.collection("user").doc('0JKRiI21OwSmzmHYZh4a').set(user);
+    // CollectionReference users = FirebaseFirestore.instance.collection('users');
+
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
+
     try {
       await _authenticationRepository.signUp(
         email: state.email.value,
         password: state.password.value,
       );
+      final db = FirebaseFirestore.instance;
+      final user = <String, dynamic>{
+        'name': state.name,
+        'email': state.email.value,
+        'phone': state.phone,
+        'birthday': state.birthday,
+      };
+      await db
+          .collection('users')
+          .doc(_authenticationRepository.currentUser.id)
+          .set(user)
+          .onError((e, _) => print("Error writing document: $e"));
 
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
+      emit(state.copyWith(signUpId: _authenticationRepository.currentUser.id));
     } on SignUpWithEmailAndPasswordFailure catch (e) {
       emit(
         state.copyWith(

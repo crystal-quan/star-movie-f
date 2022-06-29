@@ -1,8 +1,9 @@
+import 'package:authentication_repository/authentication_repository.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:star_movie_3/app/app.dart';
-import 'package:star_movie_3/ui/account/tab/account_information.dart';
-import 'package:star_movie_3/ui/account/tab/transactions_history.dart';
+import 'package:star_movie_3/ui/account/tab/AccounInfo/account_information.dart';
 
 import 'package:star_movie_3/ui/home/widgets/avatar.dart';
 
@@ -18,29 +19,30 @@ class Loginedpage extends StatefulWidget {
 class _LoginedpageState extends State<Loginedpage> {
   @override
   Widget build(BuildContext context) {
+    AuthenticationRepository? _authenticationRepository;
+    final db = FirebaseFirestore.instance;
+    final docRef =
+        db.collection("users").doc(_authenticationRepository?.currentUser.id);
     final user = context.select((AppBloc bloc) => bloc.state.user);
+    final Stream<QuerySnapshot> _usersStream =
+        FirebaseFirestore.instance.collection('users').snapshots();
     return Scaffold(
-      backgroundColor: const Color(0xFF0F1B2B),
-      appBar: AppBar(
         backgroundColor: const Color(0xFF0F1B2B),
-        title: const Text('Profile'),
-        actions: <Widget>[
-          IconButton(
-            key: const Key('homePage_logout_iconButton'),
-            icon: const Icon(Icons.exit_to_app),
-            onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF0F1B2B),
+          title: const Text('Profile'),
+          actions: <Widget>[
+            IconButton(
+              key: const Key('homePage_logout_iconButton'),
+              icon: const Icon(Icons.exit_to_app),
+              onPressed: () =>
+                  context.read<AppBloc>().add(AppLogoutRequested()),
+            )
+          ],
+        ),
+        body: SingleChildScrollView(
+            child: Column(
           children: [
-            // AppBarHome(
-            //   title: 'Profile',
-            //   signUp: true,
-            //   title2: 'Log Out',
-            //   onPressed: () => context.read<AppBloc>().add(AppLogoutRequested()),
-            // ),
             Container(
               margin: const EdgeInsets.only(top: 24, bottom: 16),
               width: 140,
@@ -138,15 +140,13 @@ class _LoginedpageState extends State<Loginedpage> {
             buildGestureDetector(
                 'Account Information', 'ic_account.png', AccountInfomation()),
             buildGestureDetector(
-                'Transactions History', 'ic_dollar.png', const Transaction()),
+                'Transactions History', 'ic_dollar.png', Scaffold()),
             buildGestureDetector(
                 'Rating App', 'ic_rating.png', const Scaffold()),
             buildGestureDetector(
                 'Privacy Policy', 'ic_folder.png', const Scaffold()),
           ],
-        ),
-      ),
-    );
+        )));
   }
 
   GestureDetector buildGestureDetector(

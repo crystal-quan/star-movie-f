@@ -104,10 +104,11 @@ class _BirthdayInput extends StatelessWidget {
       builder: (context, state) {
         return TextField(
           key: const Key('signUpForm_birthdayInput_textField'),
-          onChanged: (birthday) => context.read<SignUpCubit>().phoneChanged(birthday),
+          onChanged: (birthday) =>
+              context.read<SignUpCubit>().birthdayChanged(birthday),
           keyboardType: TextInputType.datetime,
           decoration: InputDecoration(
-            icon: Image.asset('images/ic_phone.png'),
+            icon: Image.asset('images/calendar-line.png'),
             helperText: '',
           ),
         );
@@ -115,6 +116,7 @@ class _BirthdayInput extends StatelessWidget {
     );
   }
 }
+
 class _NameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -123,7 +125,7 @@ class _NameInput extends StatelessWidget {
       builder: (context, state) {
         return TextField(
           key: const Key('signUpForm_nameInput_textField'),
-          onChanged: (name) => context.read<SignUpCubit>().phoneChanged(name),
+          onChanged: (name) => context.read<SignUpCubit>().nameChanged(name),
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
             icon: Image.asset('images/ic_user.png'),

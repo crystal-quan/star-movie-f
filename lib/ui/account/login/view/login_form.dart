@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 import 'package:star_movie_3/ui/account/login/cubit/login_cubit.dart';
-import 'package:star_movie_3/ui/account/tab/account_information.dart';
 import 'package:star_movie_3/ui/home/home_page.dart';
 import 'package:star_movie_3/widgets/app_bar/app_bar.dart';
 

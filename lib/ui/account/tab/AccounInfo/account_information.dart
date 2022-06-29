@@ -1,30 +1,61 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:star_movie_3/app/bloc/app_bloc.dart';
+import 'package:star_movie_3/ui/account/sign_up/cubit/sign_up_cubit.dart';
+import 'package:star_movie_3/ui/account/tab/AccounInfo/account_cubit.dart';
 import 'package:star_movie_3/ui/account/tab/change_pass.dart';
 import 'package:star_movie_3/ui/home/widgets/avatar.dart';
 import 'package:star_movie_3/ui/utils/red_button.dart';
 import 'package:star_movie_3/ui/utils/textField_custom.dart';
 import 'package:star_movie_3/widgets/app_bar/app_bar.dart';
 
-// ignore: must_be_immutable
 class AccountInfomation extends StatefulWidget {
-  TextEditingController? controller = TextEditingController();
-  AccountInfomation({Key? key, this.controller}) : super(key: key);
+  TextEditingController? userController = TextEditingController();
+  TextEditingController? phoneController = TextEditingController();
+  TextEditingController? emailController = TextEditingController();
+  TextEditingController? birthdayController = TextEditingController();
+  AccountInfomation(
+      {Key? key,
+      this.userController,
+      this.birthdayController,
+      this.emailController,
+      this.phoneController})
+      : super(key: key);
 
   @override
   State<AccountInfomation> createState() => _AccountInfomationState();
 }
 
 class _AccountInfomationState extends State<AccountInfomation> {
+  // AccountCubit? _cubit;
+  // @override
+  // void initState() {
+  //   _cubit = context.read<AccountCubit>();
+  //   super.initState();
+  //   _cubit?.getInfomation();
+  // }
+
   @override
   Widget build(BuildContext context) {
     final user = context.select((AppBloc bloc) => bloc.state.user);
-
+    // final stateUse = context.select((SignUpCubit bloc) => bloc.state);
     return Scaffold(
       backgroundColor: const Color(0xFF0F1B2B),
-      bottomNavigationBar: const RedButton(
-        title: 'Save Change',
+      bottomNavigationBar: GestureDetector(
+        // onTap: () => context.read<AccountCubit>().test(),
+        child: Container(
+            alignment: Alignment.center,
+            child: Text(
+              'Save Change',
+              style: TextStyle(fontSize: 24),
+            ),
+            margin: EdgeInsets.symmetric(horizontal: 18),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.06,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(4)),
+                color: Colors.red)),
       ),
       body: SafeArea(
         child: Column(
@@ -53,25 +84,25 @@ class _AccountInfomationState extends State<AccountInfomation> {
                       ),
                     ),
                     BuildTextFieldCustom(
-                        controller: widget.controller,
+                        controller: widget.userController,
                         title: 'USER NAME',
                         image: 'ic_user.png',
-                        infomation: user.name ?? user.id),
+                        infomation: user.name),
                     BuildTextFieldCustom(
-                        controller: widget.controller,
+                        controller: widget.emailController,
                         title: 'EMAIL',
                         image: 'mail.png',
                         infomation: '${user.email}'),
                     BuildTextFieldCustom(
-                        controller: widget.controller,
+                        controller: widget.phoneController,
                         title: 'PHONE',
                         image: 'ic_phone.png',
-                        infomation: '(+84) 363 226 994'),
+                        infomation: '${user.phone}'),
                     BuildTextFieldCustom(
-                        controller: widget.controller,
+                        controller: widget.birthdayController,
                         title: 'BIRTHDAY',
                         image: 'calendar-line.png',
-                        infomation: 'May 29, 1994'),
+                        infomation: '${user.birthday}'),
                     const SizedBox(
                       height: 40,
                     ),

@@ -1,5 +1,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:form_inputs/form_inputs.dart';
@@ -53,14 +54,21 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> logInWithCredentials() async {
-    if (!state.status.isValidated) return;
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      await _authenticationRepository.logInWithEmailAndPassword(
+      var b = await _authenticationRepository.logInWithEmailAndPassword(
         email: state.email.value,
         password: state.password.value,
       );
+      var c = await users
+          .where("id", isEqualTo: b.user?.uid)
+          .get(const GetOptions());
+      print(b);
+      print(c.docs.first);
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
+      emit(state.copyWith(id: b.user?.uid));
     } on LogInWithEmailAndPasswordFailure catch (e) {
       emit(
         state.copyWith(
@@ -76,7 +84,8 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> logInWithGoogle() async {
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      await _authenticationRepository.logInWithGoogle();
+      var a = await _authenticationRepository.logInWithGoogle();
+      print(a);
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on LogInWithGoogleFailure catch (e) {
       emit(

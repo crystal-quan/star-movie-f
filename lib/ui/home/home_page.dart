@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
             return HomeCubit();
           },
         ),
+        
         // BlocProvider<AccountCubit>(
         //   create: (BuildContext context) {
         //     return AccountCubit();
