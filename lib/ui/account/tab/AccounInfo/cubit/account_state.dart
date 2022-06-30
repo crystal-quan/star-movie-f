@@ -49,6 +49,7 @@ class AccountState extends Equatable {
       [email, password, confirmedPassword, status, phone, name, birthday];
 
   AccountState copyWith({
+    dynamic data,
     String? birthday,
     String? phone,
     String? name,
@@ -71,20 +72,22 @@ class AccountState extends Equatable {
   }
 }
 
-class City {
-  final String? name;
-  final String? state;
-  final String? country;
-  final bool? capital;
-  final int? population;
-  final List<String>? regions;
+// class City {
+//   final String? name;
+//   final String? state;
+//   final String? country;
+//   final bool? capital;
+//   final int? population;
+//   final List<String>? regions;
 
-  City({
-    this.name,
-    this.state,
-    this.country,
-    this.capital,
-    this.population,
-    this.regions,
-  });
-}
+//   City({
+//     this.name,
+//     this.state,
+//     this.country,
+//     this.capital,
+//     this.population,
+//     this.regions,
+//   });
+// }
+
+

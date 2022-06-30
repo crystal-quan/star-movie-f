@@ -1,6 +1,9 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:star_movie_3/ui/account/account.dart';
+import 'package:star_movie_3/ui/account/tab/AccounInfo/cubit/account_cubit.dart';
+import 'package:star_movie_3/ui/account/tab/AccounInfo/view/account_information.dart';
 import 'package:star_movie_3/ui/movie/movie_page.dart';
 import 'package:star_movie_3/ui/notification/notification_page.dart';
 import 'package:star_movie_3/ui/ticket/ticket_page.dart';
@@ -24,7 +27,6 @@ class _HomePageState extends State<HomePage> {
             return HomeCubit();
           },
         ),
-        
         // BlocProvider<AccountCubit>(
         //   create: (BuildContext context) {
         //     return AccountCubit();

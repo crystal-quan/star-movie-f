@@ -3,7 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:star_movie_3/app/app.dart';
-import 'package:star_movie_3/ui/account/tab/AccounInfo/account_information.dart';
+import 'package:star_movie_3/ui/account/tab/AccounInfo/view/account_info_page.dart';
+import 'package:star_movie_3/ui/account/tab/AccounInfo/view/account_information.dart';
 
 import 'package:star_movie_3/ui/home/widgets/avatar.dart';
 
@@ -138,7 +139,7 @@ class _LoginedpageState extends State<Loginedpage> {
               ),
             ),
             buildGestureDetector(
-                'Account Information', 'ic_account.png', AccountInfomation()),
+                'Account Information', 'ic_account.png', AccountInfoPage()),
             buildGestureDetector(
                 'Transactions History', 'ic_dollar.png', Scaffold()),
             buildGestureDetector(
