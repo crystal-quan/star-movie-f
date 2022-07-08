@@ -169,6 +169,7 @@ void main() {
         when(() => firebaseAuth.signInWithPopup(any()))
             .thenAnswer((_) => Future.value(MockUserCredential()));
       });
+      
 
       test('calls signIn authentication, and signInWithCredential', () async {
         await authenticationRepository.logInWithGoogle();

@@ -80,7 +80,9 @@ class _LoginFormState extends State<LoginForm> {
                 builder: (context, state) {
                   return Center(
                     child: InkWell(
-                      onTap: () => context.read<LoginCubit>().forgotPass(),
+                      onTap: () => state.email.valid
+                          ? context.read<LoginCubit>().forgotPass()
+                          : null,
                       child: Text(
                         'Forgot Passwrod',
                         textAlign: TextAlign.center,
@@ -94,7 +96,7 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(
                   height: MediaQuery.of(context).size.height > 800
                       ? MediaQuery.of(context).size.height / 5
-                      : null),
+                      : 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -27,6 +27,7 @@ class LoginCubit extends Cubit<LoginState> {
     //if (!state.status.isValidated) return;
     //emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
+     
       await FirebaseAuth.instance.sendPasswordResetEmail(
         email: state.email.value,
       );
