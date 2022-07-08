@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:form_inputs/form_inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:star_movie_3/app/app.dart';
 
 part 'sign_up_state.dart';
 
@@ -93,8 +94,6 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   Future<void> signUpFormSubmitted() async {
-    // CollectionReference users = FirebaseFirestore.instance.collection('users');
-
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
 
@@ -118,6 +117,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
       emit(state.copyWith(signUpId: _authenticationRepository.currentUser.id));
+
     } on SignUpWithEmailAndPasswordFailure catch (e) {
       emit(
         state.copyWith(

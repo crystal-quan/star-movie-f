@@ -7,6 +7,8 @@ import 'package:star_movie_3/app/app.dart';
 
 import 'package:star_movie_3/ui/Splash_Screen/Splash_Screen.dart';
 
+import 'my_app.dart';
+
 Future<void> main() {
   return BlocOverrides.runZoned(
     () async {
@@ -21,16 +23,3 @@ Future<void> main() {
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData.dark(),
-      home: const SplashScreen(),
-    );
-  }
-}

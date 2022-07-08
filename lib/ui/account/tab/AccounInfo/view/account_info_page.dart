@@ -13,32 +13,13 @@ class AccountInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.select((AppBloc bloc) => bloc.state.user);
+    // final user = context.select((AppBloc bloc) => bloc.state.user);
     return Scaffold(
-      // backgroundColor: const Color(0xFF0F1B2B),
-      // appBar: AppBar(
-      //   title: const Text('Account Information'),
-      //   backgroundColor: const Color(0xFF0F1B2B),
-      // ),
-      // bottomNavigationBar: GestureDetector(
-      //   onTap: () => context.read<AccountCubit>().getInfomation('${user.id}'),
-      //   child: Container(
-      //       alignment: Alignment.center,
-      //       child: Text(
-      //         'Save Change',
-      //         style: TextStyle(fontSize: 24),
-      //       ),
-      //       margin: EdgeInsets.symmetric(horizontal: 18),
-      //       width: MediaQuery.of(context).size.width,
-      //       height: MediaQuery.of(context).size.height * 0.06,
-      //       decoration: BoxDecoration(
-      //           borderRadius: BorderRadius.all(Radius.circular(4)),
-      //           color: Colors.red)),
-      // ),
+      backgroundColor: const Color(0xFF0F1B2B),
       body: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
         child: BlocProvider<AccountCubit>(
-          create: (_) => AccountCubit(),
+          create: (_) => AccountCubit(context.read<AuthenticationRepository>()),
           child: AccountInfomation(),
         ),
       ),

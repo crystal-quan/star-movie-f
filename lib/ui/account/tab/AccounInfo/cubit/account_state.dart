@@ -7,7 +7,8 @@ class AccountState extends Equatable {
     this.birthday = '',
     this.name = '',
     this.phone = '',
-    this.email = const Email.pure(),
+    this.email = "",
+    // const Email.pure(),
     this.password = const Password.pure(),
     this.confirmedPassword = const ConfirmedPassword.pure(),
     this.status = FormzStatus.pure,
@@ -16,7 +17,7 @@ class AccountState extends Equatable {
   final String birthday;
   final String name;
   final String phone;
-  final Email email;
+  final String email;
   final Password password;
   final ConfirmedPassword confirmedPassword;
   final FormzStatus status;
@@ -53,7 +54,7 @@ class AccountState extends Equatable {
     String? birthday,
     String? phone,
     String? name,
-    Email? email,
+    String? email,
     Password? password,
     ConfirmedPassword? confirmedPassword,
     FormzStatus? status,

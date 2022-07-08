@@ -1,23 +1,25 @@
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:star_movie_3/app/bloc/app_bloc.dart';
 import 'package:star_movie_3/ui/account/sign_up/cubit/sign_up_cubit.dart';
 import 'package:star_movie_3/ui/account/tab/AccounInfo/cubit/account_cubit.dart';
-import 'package:star_movie_3/ui/account/tab/change_pass.dart';
+import 'package:star_movie_3/ui/account/tab/change_pass/change_pass.dart';
 import 'package:star_movie_3/ui/home/widgets/avatar.dart';
 import 'package:star_movie_3/ui/utils/red_button.dart';
 import 'package:star_movie_3/ui/utils/textField_custom.dart';
 import 'package:star_movie_3/widgets/app_bar/app_bar.dart';
 
 class AccountInfomation extends StatefulWidget {
-  TextEditingController? userController = TextEditingController();
+  TextEditingController? nameController = TextEditingController();
   TextEditingController? phoneController = TextEditingController();
   TextEditingController? emailController = TextEditingController();
   TextEditingController? birthdayController = TextEditingController();
   AccountInfomation(
       {Key? key,
-      this.userController,
+      this.nameController,
       this.birthdayController,
       this.emailController,
       this.phoneController})
@@ -28,23 +30,23 @@ class AccountInfomation extends StatefulWidget {
 }
 
 class _AccountInfomationState extends State<AccountInfomation> {
-  // AccountCubit? _cubit;
-  // @override
-  // void initState() {
-  //   final user = context.select((AppBloc bloc) => bloc.state.user);
-  //   _cubit = context.read<AccountCubit>();
-  //   super.initState();
-  //   _cubit?.getInfomation(user.id);
-  // }
+  AccountCubit? _cubit;
+
+  @override
+  void initState() {
+    _cubit = context.read<AccountCubit>();
+    _cubit?.getInfomation();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final user = context.select((AppBloc bloc) => bloc.state.user);
-    // final stateUse = context.select((SignUpCubit bloc) => bloc.state);
+
     return Scaffold(
       backgroundColor: const Color(0xFF0F1B2B),
       bottomNavigationBar: GestureDetector(
-        onTap: () => context.read<AccountCubit>().getInfomation('${user.id}'),
+        onTap: () => context.read<AccountCubit>().saveChangeInfomation(),
         child: Container(
             alignment: Alignment.center,
             child: Text(
@@ -59,7 +61,24 @@ class _AccountInfomationState extends State<AccountInfomation> {
                 color: Colors.red)),
       ),
       body: SafeArea(
-        child: BlocBuilder<AccountCubit, AccountState>(
+        child: BlocConsumer<AccountCubit, AccountState>(
+          listener: (context, state) {
+            if (state.status.isSubmissionSuccess) {
+              Navigator.of(context).pop();
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(content: Text('Change Infomation OK')),
+                );
+            } else if (state.status.isSubmissionFailure) {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(content: Text('Change Infomation Failure')),
+                );
+            }
+          },
+          buildWhen: (previous, current) => previous.name != current.name,
           builder: (context, state) {
             return Column(
               children: [
@@ -86,7 +105,10 @@ class _AccountInfomationState extends State<AccountInfomation> {
                           ),
                         ),
                         BuildTextFieldCustom(
-                            controller: widget.userController,
+                            change: (String name) {
+                              return _cubit?.nameChanged(name);
+                            },
+                            controller: widget.nameController,
                             title: 'USER NAME',
                             image: 'ic_user.png',
                             infomation: '${state.name}'),
@@ -96,11 +118,17 @@ class _AccountInfomationState extends State<AccountInfomation> {
                             image: 'mail.png',
                             infomation: '${state.email}'),
                         BuildTextFieldCustom(
+                            change: (String phone) {
+                              return _cubit?.phoneChanged(phone);
+                            },
                             controller: widget.phoneController,
                             title: 'PHONE',
                             image: 'ic_phone.png',
                             infomation: '${state.phone}'),
                         BuildTextFieldCustom(
+                            change: (String birthday) {
+                              return _cubit?.birthdayChanged(birthday);
+                            },
                             controller: widget.birthdayController,
                             title: 'BIRTHDAY',
                             image: 'calendar-line.png',
@@ -113,7 +141,7 @@ class _AccountInfomationState extends State<AccountInfomation> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const ChangePass(),
+                                  builder: (context) => const ChangePassPage(),
                                 ));
                           },
                           child: const Text(

@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:star_movie_3/ui/account/tab/AccounInfo/accountview_info.dart';
 
 class BuildTextFieldCustom extends StatelessWidget {
   const BuildTextFieldCustom(
@@ -8,6 +10,8 @@ class BuildTextFieldCustom extends StatelessWidget {
       @required this.title,
       @required this.image,
       @required this.infomation,
+      this.errorText,
+      this.change,
       this.controller,
       this.hideText})
       : super(key: key);
@@ -17,11 +21,14 @@ class BuildTextFieldCustom extends StatelessWidget {
   final String? infomation;
   final bool? hideText;
   final TextEditingController? controller;
+  final dynamic change;
+  final String? errorText;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      height: 80,
+      height: 100,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -39,10 +46,12 @@ class BuildTextFieldCustom extends StatelessWidget {
             child: Container(
               margin: const EdgeInsets.only(left: 12),
               child: TextField(
+                  onChanged: change,
                   controller: controller,
                   obscureText: hideText ?? false,
                   style: const TextStyle(decorationColor: Color(0xff2B3543)),
                   decoration: InputDecoration(
+                    errorText: errorText,
                     hintText: '$infomation',
                     hintStyle: const TextStyle(
                       color: Colors.white,
