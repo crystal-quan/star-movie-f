@@ -31,16 +31,16 @@ class LoginCubit extends Cubit<LoginState> {
       await FirebaseAuth.instance.sendPasswordResetEmail(
         email: state.email.value,
       );
-      emit(state.copyWith(status: FormzStatus.pure));
+      emit(state.copyWith(sendResetPassEmail: SendResetPassEmail.sendSucces));
     } on LogInWithEmailAndPasswordFailure catch (e) {
       emit(
         state.copyWith(
           errorMessage: e.message,
-          status: FormzStatus.submissionFailure,
+          sendResetPassEmail: SendResetPassEmail.sendError,
         ),
       );
     } catch (_) {
-      emit(state.copyWith(status: FormzStatus.submissionFailure));
+      emit(state.copyWith(sendResetPassEmail: SendResetPassEmail.sendError));
     }
   }
 

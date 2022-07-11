@@ -29,6 +29,16 @@ class _LoginFormState extends State<LoginForm> {
               ),
             );
         }
+        if (state.sendResetPassEmail == SendResetPassEmail.sendError) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(
+                    state.errorMessage ?? 'Send Reset Password Email Fail'),
+              ),
+            );
+        }
       },
       child: Align(
         alignment: const Alignment(0, -1 / 3),
